@@ -21,7 +21,7 @@ def map_strikes(vol_surface, spot, base_rf, quote_rf):
     def func(value):
         vol = value.iloc[0]
         ttm, delta = value.name[0], value.name[1]
-        forward = fx_forward(spot, base_rf, quote_rf, ttm)
+        forward = fx_forward_price(spot, base_rf, quote_rf, ttm)
         return get_strike_ua(forward, delta, base_rf, ttm, vol)
 
     return vol_surface.stack().to_frame().apply(func, axis=1).unstack()

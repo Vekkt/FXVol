@@ -5,16 +5,12 @@ from scipy.stats import norm
 from scipy.optimize import root_scalar
 
 
-DELTA_SEARCH_MAX_ITER = 10000
-DELTA_SEARCH_TOL = 1e-3
-
-
 def get_opt_factor(opt):
     assert opt in ["CALL", "PUT", "C", "P"], "Option type must be one of 'CALL' (or 'C') and 'PUT' (or 'P')"
     return 1 if opt in ["CALL", "C"] else -1
 
 
-def fx_forward(spot, base_rf, quote_rf, ttm):
+def fx_forward_price(spot, base_rf, quote_rf, ttm):
     return spot * np.exp((quote_rf - base_rf) * ttm)
 
 
